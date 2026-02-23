@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input } from '@angular/core';
 
 @Component({
   selector: 'app-featured-projects',
@@ -8,6 +8,9 @@ import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
   styleUrl: './featured-projects.css',
 })
 export class FeaturedProjects implements OnInit, OnDestroy {
+
+  @Input() isDarkMode: boolean = true;
+
   currentIndex = 0;
   intervalId: any;
 

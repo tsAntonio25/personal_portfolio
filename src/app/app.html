@@ -1,59 +1,90 @@
 <div [style.--bg-start]="currentBg().start"
      [style.--bg-end]="currentBg().end"
-     class="main-container h-screen w-full overflow-y-auto snap-y snap-proximity scroll-smooth transition-all duration-5000">
+     [class.light-theme]="!isDarkMode()"
+     class="main-container h-screen w-full overflow-y-auto snap-y snap-proximity scroll-smooth transition-all duration-500">
   
   <nav class="fixed top-0 left-0 z-50 flex items-center justify-between w-full h-24 bg-transparent">
-    <div class="z-50 flex items-center justify-center p-4 ml-4 md:ml-8 bg-black w-16 h-16 md:w-20 md:h-20 rounded-b-[30px] md:rounded-b-[40px] hover:w-30 hover:h-30 hover:mt:5 transition-all border-2 border-slate-200">
-      <img src="/assets/images/logo-white.png" alt="Logo" class="w-full h-auto">
+    
+    <div (click)="toggleTheme()"
+         [ngClass]="isDarkMode() ? 'bg-[#191423] border-[#885ee2]' : 'bg-[#b5a462] border-[#b5a462]'"
+         class="z-50 cursor-pointer flex items-center justify-center p-4 ml-4 md:ml-8 w-16 h-16 md:w-20 md:h-20 rounded-b-[30px] md:rounded-b-[40px] transition-all border-2 active:scale-95 shadow-lg group">
+      
+      <img [src]="isDarkMode() ? '/assets/images/logo-white.png' : '/assets/images/logo-black.png'" 
+           alt="Logo" 
+           class="w-full h-auto transition-transform duration-300 group-hover:rotate-12">
     </div>
 
     <input type="checkbox" id="menu-toggle" class="hidden peer">
 
-    <label for="menu-toggle" class="md:hidden mr-6 text-white text-3xl cursor-pointer z-50 peer-checked:hidden">
+    <label for="menu-toggle" 
+           [ngClass]="isDarkMode() ? 'text-white' : 'text-black'"
+           class="md:hidden mr-6 text-3xl cursor-pointer z-50 peer-checked:hidden">
       <i class="fa-solid fa-bars"></i>
     </label>
     
-    <label for="menu-toggle" class="hidden peer-checked:block md:hidden mr-6 text-white text-3xl cursor-pointer z-50">
+    <label for="menu-toggle" 
+           [ngClass]="isDarkMode() ? 'text-white' : 'text-black'"
+           class="hidden peer-checked:block md:hidden mr-6 text-3xl cursor-pointer z-50">
       <i class="fa-solid fa-xmark"></i>
     </label>
 
-    <div class="fixed top-0 right-0 h-screen w-64 bg-black/95 border-l border-white/10 flex flex-col items-center justify-center space-y-8 
+    <div [ngClass]="isDarkMode() ? 'bg-[#191423] md:bg-[#191423] border-[#885ee2] md:border-[#885ee2]' : 'bg-[#b5a462] md:bg-[#b5a462] border-[#b5a462] md:border-[#b5a462]'"
+         class="fixed top-0 right-0 h-screen w-64 border-l flex flex-col items-center justify-center space-y-8 
                 translate-x-full transition-transform duration-300 ease-in-out peer-checked:translate-x-0
-                md:static md:h-full md:w-auto md:bg-black md:flex-row md:space-y-0 md:space-x-10 md:translate-x-0 md:border-2 md:border-slate-200 md:rounded-bl-[40px] md:px-10">
+                md:static md:h-full md:w-auto md:flex-row md:space-y-0 md:space-x-10 md:translate-x-0 md:border-2 md:rounded-bl-[40px] md:px-10">
       
-      <a href="#intro" class="text-lg font-medium text-white hover:text-indigo-300 hover:px-3 transition-all">Home</a>
-      <a href="#about" class="text-lg font-medium text-white hover:text-indigo-300 hover:px-3 transition-all">About</a>
-      <a href="#projects" class="text-lg font-medium text-white hover:text-indigo-300 hover:px-3 transition-all">Projects</a>
-      <a href="#contact" class="text-lg font-medium text-white hover:text-indigo-300 hover:px-3 transition-all">Contact</a>
+      <a href="#intro" 
+         [ngClass]="isDarkMode() ? 'text-white hover:text-[#885ee2]' : 'text-black hover:text-[#4D462D]'"
+         class="text-lg font-medium transition-all hover:px-3">Home</a>
+      
+      <a href="#about" 
+         [ngClass]="isDarkMode() ? 'text-white hover:text-[#885ee2]' : 'text-black hover:text-[#4D462D]'"
+         class="text-lg font-medium transition-all hover:px-3">About</a>
+      
+      <a href="#projects" 
+         [ngClass]="isDarkMode() ? 'text-white hover:text-[#885ee2]' : 'text-black hover:text-[#4D462D]'"
+         class="text-lg font-medium transition-all hover:px-3">Projects</a>
+      
+      <a href="#contact" 
+         [ngClass]="isDarkMode() ? 'text-white hover:text-[#885ee2]' : 'text-black hover:text-[#4D462D]'"
+         class="text-lg font-medium transition-all hover:px-3">Contact</a>
     </div>
   </nav>
 
   <section id="intro" class="snap-start min-h-screen w-full">
-    <app-intro></app-intro>
+    <app-intro [isDarkMode]="isDarkMode()"></app-intro>
   </section>
 
   <section id="featured" class="snap-start min-h-screen w-full">
-    <app-featured-projects></app-featured-projects>
+    <app-featured-projects [isDarkMode]="isDarkMode()"></app-featured-projects>
   </section>
 
   <section id="about" class="snap-start min-h-screen w-full">
-    <app-about></app-about>
+    <app-about [isDarkMode]="isDarkMode()"></app-about>
   </section>
 
   <section id="tech" class="snap-start min-h-screen w-full">
-    <app-tech-skills></app-tech-skills>
+    <app-tech-skills [isDarkMode]="isDarkMode()"></app-tech-skills>
   </section>
 
   <section id="soft" class="snap-start min-h-screen w-full">
-    <app-soft-skills></app-soft-skills>
+    <app-soft-skills [isDarkMode]="isDarkMode()"></app-soft-skills>
+  </section>
+
+  <section id="certs" class="snap-start min-h-screen w-full">
+    <app-certifications [isDarkMode]="isDarkMode()"></app-certifications>
   </section>
 
   <section id="projects" class="snap-start min-h-screen w-full">
-    <app-projects></app-projects>
+    <app-projects [isDarkMode]="isDarkMode()"></app-projects>
   </section>
 
   <section id="contact" class="snap-start min-h-screen w-full">
-    <app-contact></app-contact>
+    <app-contact [isDarkMode]="isDarkMode()"></app-contact>
+  </section>
+
+  <section id="resume" class="snap-start min-h-screen w-full">
+    <app-resume [isDarkMode]="isDarkMode()"></app-resume>
   </section>
 
 </div>

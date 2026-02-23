@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-projects',
@@ -8,6 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './projects.css',
 })
 export class Projects {
+
+  @Input() isDarkMode: boolean = true;
+
   activeIndex = 2;
 
   projects: any = [
@@ -28,7 +31,7 @@ export class Projects {
     {
       imagepic: '/assets/images/iponly-webapp.png',
       title: 'Iponly: Gamified Budget Tracker Web App',
-      desc: 'A secure budget tracking application featuring real-time data visualization with Chart.js and robust user authentication using JWT and Bcrypt.',
+      desc: 'A secure budget tracking application featuring real-time data visualization with Chart.js and user authentication using JWT and Bcrypt.',
       techstack: 'Vue.js, TailwindCSS, Node.js, Express.js, MongoDB',
       repolink: 'https://github.com/tsAntonio25/6WCSERVER-Final-Project'
     },

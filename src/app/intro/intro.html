@@ -1,28 +1,42 @@
-<div class="intro-container flex flex-col md:flex-row items-center justify-center min-h-screen px-6 md:px-10 overflow-hidden text-center md:text-left">
+<div class="intro-container flex flex-col md:flex-row items-center justify-center min-h-screen px-6 md:px-10 overflow-hidden text-center md:text-left transition-colors duration-500">
     
     <div class="intro-img animate-fade-in mb-8 md:mb-0">
-        <div class="bg-gray-200 p-4 md:p-8 rounded-xl shadow-lg">
+        <div [ngClass]="isDarkMode ? 'bg-[#191423] shadow-indigo-500/10' : 'bg-[#eae8e2] shadow-xl'" 
+             class="p-4 md:p-8 rounded-2xl border transition-all duration-500"
+             [class.border-white]="isDarkMode"
+             [class.border-slate-200]="!isDarkMode">
             <img src="/assets/images/image-me.jpg" alt="Profile" 
-                 class="w-64 md:w-100 h-auto rounded-lg mx-auto">
+                 class="w-64 md:w-100 h-auto rounded-lg mx-auto transition-all duration-700">
         </div>
     </div>
 
-    <div class="w-full md:w-0 md:h-64 border-t md:border-t-0 md:border-l border-white my-8 md:mx-12 animate-fade-in delay-300"></div>
+    <div [ngClass]="isDarkMode ? 'border-[#885ee2]' : 'border-[#4D462D]'"
+         class="w-full md:w-0 md:h-64 border-t md:border-t-0 md:border-l my-8 md:mx-12 animate-fade-in delay-300 transition-colors">
+    </div>
 
     <div class="intro-says animate-fade-in delay-500">
-        <h1 class="text-4xl md:text-6xl font-bold text-slate-100 mb-2">Trishia Mae Antonio</h1>
-        <h3 class="text-xl md:text-3xl text-slate-300 mb-6 font-medium">Aspiring Full Stack Developer</h3>
+        <h1 [ngClass]="isDarkMode ? 'text-white' : 'text-black'" 
+            class="text-4xl md:text-6xl font-bold mb-2 transition-colors">
+            Trishia Mae Antonio
+        </h1>
         
-        <div class="flex items-center justify-center md:justify-start space-x-8 text-3xl text-slate-300 mb-10">
-          <a href="#" class="hover:text-blue-300 transition-transform hover:-translate-y-1"><i class="fa-brands fa-linkedin"></i></a>
-          <a href="#" class="hover:text-blue-600 transition-transform hover:-translate-y-1"><i class="fa-brands fa-facebook"></i></a>
-          <a href="#" class="hover:text-gray-600 transition-transform hover:-translate-y-1"><i class="fa-brands fa-github"></i></a>
-          <a href="#" class="hover:text-red-600 transition-transform hover:-translate-y-1"><i class="fa-solid fa-envelope"></i></a>
+        <h3 [ngClass]="isDarkMode ? 'text-[#885ee2]' : 'text-[#4d462d]'" 
+            class="text-xl md:text-3xl mb-6 font-medium transition-colors">
+            Aspiring Full Stack Developer
+        </h3>
+        
+        <div [ngClass]="isDarkMode ? 'text-[#76727c]' : 'text-[#9f9057]'" 
+             class="flex items-center justify-center md:justify-start space-x-8 text-3xl mb-10 transition-colors">
+          <a href="https://www.linkedin.com/in/trishia-mae-antonio-1b1033298/" target="_blank" class="hover:text-blue-400 transition-transform hover:-translate-y-1"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="https://www.facebook.com/trishia.antoniolololol/" target="_blank" class="hover:text-blue-600 transition-transform hover:-translate-y-1"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://github.com/tsAntonio25" target="_blank" class="hover:text-gray-900 dark:hover:text-white transition-transform hover:-translate-y-1"><i class="fa-brands fa-github"></i></a>
+          <a href="mailto:trishiamaeantonio@gmail.com" target="_blank" class="hover:text-red-600 transition-transform hover:-translate-y-1"><i class="fa-solid fa-envelope"></i></a>
         </div>
 
         <a href="https://github.com/tsAntonio25" target="_blank" rel="noopener noreferrer">
             <button type="button" 
-                class="bg-black border border-white text-white px-8 py-3 rounded-xl text-lg font-semibold hover:bg-gray-800 transition-all hover:shadow-xl active:scale-95 cursor-pointer">
+                [ngClass]="isDarkMode ? 'bg-[#6f44dc] text-white border-transparent hover:bg-[#2e2938]' : 'bg-[#b5a462] text-black border-transparent hover:bg-[#e1e1e1] shadow-md'"
+                class="border px-8 py-3 rounded-xl text-lg font-semibold transition-all hover:shadow-xl active:scale-95 cursor-pointer">
                 Visit my GitHub Repo
             </button>
         </a>

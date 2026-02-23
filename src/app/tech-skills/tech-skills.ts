@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 
 @Component({
@@ -9,6 +9,8 @@ import { Component } from '@angular/core';
   styleUrl: './tech-skills.css',
 })
 export class TechSkills {
+
+  @Input() isDarkMode: boolean = true;
 
   frontend: any = [
     {
@@ -98,4 +100,11 @@ export class TechSkills {
       name: 'Visual Studio Code'
     },
   ]
+
+  skillCategories: any = [
+  { title: 'Frontend', data: this.frontend },
+  { title: 'Backend', data: this.backend },
+  { title: 'Database', data: this.database },
+  { title: 'Tools', data: this.tools }
+];
 }

@@ -1,20 +1,34 @@
-<div class="flex flex-col items-center p-6 md:p-10 font-sans my-5 md:my-10 w-full scroll-reveal">
-  <h1 class="text-2xl md:text-4xl font-bold mb-8 md:mb-12 text-white">Soft Skills</h1>
+<div class="flex flex-col items-center p-6 md:p-10 font-sans my-5 md:my-10 w-full scroll-reveal transition-colors duration-500">
+  
+  <h1 [ngClass]="isDarkMode ? 'text-white' : 'text-black'"
+      class="text-3xl md:text-4xl font-bold mb-8 md:mb-12 transition-colors">
+    Soft Skills
+  </h1>
 
-  <div class="flex flex-col gap-6 w-full max-w-4xl text-white">
+  <div class="flex flex-col gap-6 w-full max-w-4xl">
     
     @for (skill of softskills; track $index) {
-      <div class="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-8 p-6 md:p-8 
-                  border border-white/20 rounded-[2rem] w-full bg-black/40 backdrop-blur-sm 
-                  scroll-reveal transition-all hover:border-indigo-500/50">
+      <div [ngClass]="isDarkMode 
+            ? 'bg-[#191423] border-[#885ee2]' 
+            : 'bg-[#f8f6ef] border-[#b5a462] shadow-lg'"
+           class="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-8 p-6 md:p-8 
+                  border rounded-4xl w-full backdrop-blur-sm 
+                  transition-all duration-500 hover:border-indigo-500/50 hover:-translate-y-1">
         
-        <div class="shrink-0 flex items-center justify-center w-16 h-16 rounded-2xl bg-white/5 md:bg-transparent">
-          <i [class]="skill.icon" class="text-3xl md:text-4xl text-indigo-400"></i>
+        <div [ngClass]="isDarkMode ? 'bg-white/5' : 'bg-indigo-50'"
+             class="shrink-0 flex items-center justify-center w-16 h-16 rounded-2xl transition-colors">
+          <i [class]="skill.icon" 
+             [ngClass]="isDarkMode ? 'text-[#92b2e5]' : 'text-[#1e56a3]'"
+             class="text-3xl md:text-4xl"></i>
         </div>
 
         <div class="flex flex-col gap-2 text-center md:text-left">
-          <h3 class="text-lg md:text-xl font-bold tracking-tight text-white">{{ skill.title }}</h3>
-          <p class="text-sm md:text-base text-gray-400 leading-relaxed">
+          <h3 [ngClass]="isDarkMode ? 'text-white' : 'text-slate-900'"
+              class="text-lg md:text-xl font-bold tracking-tight transition-colors">
+            {{ skill.title }}
+          </h3>
+          <p [ngClass]="isDarkMode ? 'text-gray-400' : 'text-slate-600'"
+             class="text-sm md:text-base leading-relaxed transition-colors">
             {{ skill.desc }}
           </p>
         </div>

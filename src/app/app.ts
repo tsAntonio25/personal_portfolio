@@ -7,17 +7,26 @@ import { SoftSkills } from "./soft-skills/soft-skills";
 import { Projects } from "./projects/projects";
 import { Contact } from "./contact/contact";
 import { FeaturedProjects } from "./featured-projects/featured-projects";
+import { Certifications } from "./certifications/certifications";
+import { Resume } from "./resume/resume";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Intro, About, TechSkills, SoftSkills, Projects, Contact, FeaturedProjects],
+  imports: [CommonModule, Intro, About, TechSkills, SoftSkills, Projects, Contact, FeaturedProjects, Certifications, Resume],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
   protected readonly title = signal('personal_portfolio');
-  protected currentBg = signal({ start: '#0f172a', end: '#1e293b' });
+  
+  protected isDarkMode = signal(true);
+  
+  protected currentBg = signal({ start: '#191423', end: '#000000' });
+  
+  private activeSectionId = 'intro';
+
   private el = inject(ElementRef);
   private renderer = inject(Renderer2);
 
@@ -25,6 +34,44 @@ export class App {
     afterNextRender(() => {
       this.initScrollObserver();
     });
+  }
+
+  protected toggleTheme() {
+    this.isDarkMode.update(dark => !dark);
+    this.updateBackground(this.activeSectionId);
+  }
+
+  private updateBackground(id: string) {
+    this.activeSectionId = id;
+    const isDark = this.isDarkMode();
+
+    // dark mode bg colors
+    const colorMap: Record<string, { start: string, end: string }> = isDark ? {
+      'intro': { start: '#191423', end: '#16054A' },
+      'featured': { start: '#1E054A', end: '#191423' },
+      'about': { start: '#191423', end: '#17054A' },
+      'tech': { start: '#26183B', end: '#191423' },
+      'soft': { start: '#191423', end: '#29054A' },
+      'certs': { start: '#231B45', end: '#191423' },
+      'projects': { start: '#191423', end: '#1E0D45' },
+      'contact': { start: '#131345', end: '#191423' },
+      'resume': { start: '#191423', end: '#0F0B7D' }
+    } : {
+      // light mode bg colors
+      'intro': { start: '#e1e1e1', end: '#E0D292' },
+      'featured': { start: '#E6DBBC', end: '#e1e1e1' },
+      'about': { start: '#e1e1e1', end: '#CCC087' },
+      'tech': { start: '#EBDBAB', end: '#e1e1e1' },
+      'soft': { start: '#e1e1e1', end: '#D9C496' },
+      'certs': { start: '#F2E8AC', end: '#e1e1e1' },
+      'projects': { start: '#e1e1e1', end: '#E8DCA7' },
+      'contact': { start: '#EDE3B4', end: '#e1e1e1' },
+      'resume': { start: '#e1e1e1', end: '#A3965D' }
+    };
+
+    if (colorMap[id]) {
+      this.currentBg.set(colorMap[id]);
+    }
   }
 
   private initScrollObserver() {
@@ -40,21 +87,10 @@ export class App {
     const revealTargets = this.el.nativeElement.querySelectorAll('.scroll-reveal');
     revealTargets.forEach((target: HTMLElement) => revealObserver.observe(target));
 
-    
     const bgObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        
         if (entry.isIntersecting) {
-          const id = entry.target.id;
-
-          if (id === 'intro') this.currentBg.set({ start: '#0E113B', end: '#6800AB' });
-          if (id === 'featured') this.currentBg.set({ start: '#231B45', end: '#310F8A' });
-          if (id === 'about') this.currentBg.set({ start: '#0F0F26', end: '#0023AD' });
-          if (id === 'tech') this.currentBg.set({ start: '#16275E', end: '#150B73' });
-          if (id === 'soft') this.currentBg.set({ start: '#231B45', end: '#310F8A' });
-          if (id === 'certs') this.currentBg.set({ start: '#231B45', end: '#310F8A' });
-          if (id === 'projects') this.currentBg.set({ start: '#1e3a8a', end: '#1E0D45' });
-          if (id === 'contact') this.currentBg.set({ start: '#131345', end: '#2e1065' });
+          this.updateBackground(entry.target.id);
         }
       });
     }, { 

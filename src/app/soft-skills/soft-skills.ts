@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-soft-skills',
@@ -8,6 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './soft-skills.css',
 })
 export class SoftSkills {
+
+  @Input() isDarkMode: boolean = true;
+
   softskills: any = [
     {
       icon: 'fa-solid fa-ear-listen',

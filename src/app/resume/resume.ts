@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
+
 
 @Component({
   selector: 'app-resume',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './resume.html',
   styleUrl: './resume.css',
 })
 export class Resume {
-
+  @Input() isDarkMode: boolean = true;
 }
