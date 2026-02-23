@@ -1,29 +1,47 @@
-<div [class]="currentBg() + ' transition-colors duration-1000 ease-in-out min-h-screen w-full font-sans'">
+<div [style.--bg-start]="currentBg().start"
+     [style.--bg-end]="currentBg().end"
+     class="main-container transition-all duration-1000 ease-in-out min-h-screen w-full font-sans">
   
   <nav class="fixed top-0 left-0 z-50 flex items-center justify-between w-full h-24 bg-transparent">
-    <div class="flex items-center justify-center p-4 ml-8 bg-[#FFFFFF] w-20 h-20 rounded-b-[40px] shadow-md">
-      <img src="/assets/images/logo-black.png" alt="Logo" class="w-full h-auto">
+    <div class="z-50 flex items-center justify-center p-4 ml-4 md:ml-8 bg-black w-16 h-16 md:w-20 md:h-20 rounded-b-[30px] md:rounded-b-[40px] hover:w-30 hover:h-30 hover:mt:5 transition-all border-2 border-slate-200">
+      <img src="/assets/images/logo-white.png" alt="Logo" class="w-full h-auto">
     </div>
 
-    <div class="flex items-center h-full pl-10 pr-6 space-x-10 bg-[#D9D9D9] rounded-bl-[40px] shadow-sm">
-      <a href="#intro" class="text-lg font-medium text-[#003366] transition hover:text-black hover:scale-105">Home</a>
-      <a href="#about" class="text-lg font-medium text-[#003366] transition hover:text-black hover:scale-105">About</a>
-      <a href="#projects" class="text-lg font-medium text-[#003366] transition hover:text-black hover:scale-105">Projects</a>
-      <a href="#" class="text-lg font-medium text-[#003366] transition hover:text-black hover:scale-105">Resume</a>
-      <a href="#" class="text-lg font-medium text-[#003366] transition hover:text-black hover:scale-105">Contact</a>
+    <input type="checkbox" id="menu-toggle" class="hidden peer">
+
+    <label for="menu-toggle" class="md:hidden mr-6 text-white text-3xl cursor-pointer z-50 peer-checked:hidden">
+      <i class="fa-solid fa-bars"></i>
+    </label>
+    
+    <label for="menu-toggle" class="hidden peer-checked:block md:hidden mr-6 text-white text-3xl cursor-pointer z-50">
+      <i class="fa-solid fa-xmark"></i>
+    </label>
+
+    <div class="fixed top-0 right-0 h-screen w-64 bg-black/95 border-l border-white/10 flex flex-col items-center justify-center space-y-8 
+                translate-x-full transition-transform duration-300 ease-in-out peer-checked:translate-x-0
+                md:static md:h-full md:w-auto md:bg-black md:flex-row md:space-y-0 md:space-x-10 md:translate-x-0 md:border-2 md:border-slate-200 md:rounded-bl-[40px] md:px-10">
+      
+      <a href="#intro" class="text-lg font-medium text-white hover:text-indigo-300 hover:px-3 transition-all">Home</a>
+      <a href="#about" class="text-lg font-medium text-white hover:text-indigo-300 hover:px-3 transition-all">About</a>
+      <a href="#projects" class="text-lg font-medium text-white hover:text-indigo-300 hover:px-3 transition-all">Projects</a>
+      <a href="#contact" class="text-lg font-medium text-white hover:text-indigo-300 hover:px-3 transition-all">Contact</a>
     </div>
   </nav>
 
   <section id="intro">
     <app-intro></app-intro>
+    <!--  key featured project here  -->
   </section>
 
   <section id="about">
     <app-about></app-about>
   </section>
 
-  <section id="skills">
+  <section id="tech">
     <app-tech-skills></app-tech-skills>
+  </section>
+
+  <section id="soft">
     <app-soft-skills></app-soft-skills>
   </section>
 
@@ -31,34 +49,12 @@
     <app-projects></app-projects>
   </section>
 
-  <section id="edu-exp">
-    <app-educ-exp></app-educ-exp>
+  <section id="contact">
+    <app-contact></app-contact>
+    <!--  resume here  -->
   </section>
 
-  <footer class="relative w-full pt-12 pb-8 bg-white border-t border-black px-10">
-    <div class="flex justify-between items-start">
-      <div class="flex flex-col justify-between h-40">
-        <div class="w-20 h-20 bg-[#DCE2E8] flex items-center justify-center p-2 rounded-lg">
-          <img src="/assets/images/logo-black.png" alt="Logo" class="w-full h-auto">
-        </div>
 
-        <div class="flex items-center space-x-8 text-3xl text-gray-800">
-          <a href="#" class="hover:text-blue-700 transition-transform hover:-translate-y-1"><i class="fa-brands fa-linkedin"></i></a>
-          <a href="#" class="hover:text-blue-600 transition-transform hover:-translate-y-1"><i class="fa-brands fa-facebook"></i></a>
-          <a href="#" class="hover:text-black transition-transform hover:-translate-y-1"><i class="fa-brands fa-github"></i></a>
-          <a href="#" class="hover:text-red-600 transition-transform hover:-translate-y-1"><i class="fa-solid fa-envelope"></i></a>
-        </div>
-      </div>
-
-      <div class="flex flex-col items-end space-y-2 text-right">
-        <a href="#intro" class="font-bold text-gray-900 hover:text-[#003366]">Home</a>
-        <a href="#about" class="font-bold text-gray-900 hover:text-[#003366]">About</a>
-        <a href="#projects" class="font-bold text-gray-900 hover:text-[#003366]">Projects</a>
-        <a href="#" class="font-bold text-gray-900 hover:text-[#003366]">Resume</a>
-        <a href="#" class="font-bold text-gray-900 hover:text-[#003366]">Contact</a>
-      </div>
-    </div>
-  </footer>
 
 </div>
 

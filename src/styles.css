@@ -16,3 +16,37 @@
 .delay-200 { transition-delay: 200ms; }
 .delay-300 { transition-delay: 300ms; }
 .delay-500 { transition-delay: 500ms; }
+
+@property --bg-start {
+  syntax: '<color>';
+  initial-value: #0f172a;
+  inherits: false;
+}
+
+@property --bg-end {
+  syntax: '<color>';
+  initial-value: #1e293b;
+  inherits: false;
+}
+
+.main-container {
+  background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+  transition: --bg-start 1000ms ease-in-out, --bg-end 1000ms ease-in-out;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #fff;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #747474;
+  transition: 300ms ease-in-out;
+}

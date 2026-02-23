@@ -1,103 +1,60 @@
-<!-- tech skills -->
-<div class="tech-skills-container">
-    <h1 class="tech-skills">Technical Skills</h1>
+<div class="flex flex-col items-center p-10 font-sans scroll-reveal">
+  <h1 class="text-3xl font-bold mb-10 text-white">Technical Skills</h1>
 
-    <div class="cards">
-        <!-- frontend -->
-        <div class="tech-skills-card">
-        <h3 class="card-title">Frontend</h3>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl justify-items-center scroll-reveal delay-600">
+    
+    <div class="tech-skills-card border border-white rounded-xl p-6 w-full min-h-87.5 flex flex-col items-center bg-black">
+      <h3 class="text-2xl font-semibold mb-2 text-white">Frontend</h3>
+      <div class="w-full border-t border-white mb-6"></div>
 
-        <div class="card-lists">
-            <div class="card-list">
-                <!-- icons from fontawesome -->
-                 <p>tech language</p>
-            </div>
-            <div class="card-list">
-                <!-- icons from fontawesome -->
-                 <p>tech language</p>
-            </div>
-            <div class="card-list">
-                <!-- icons from fontawesome -->
-                 <p>tech language</p>
-            </div>
-            <div class="card-list">
-                <!-- icons from fontawesome -->
-                 <p>tech language</p>
-            </div>
-        </div>
-        </div>
-
-        <!-- frontend -->
-        <div class="tech-skills-card">
-        <h3 class="card-title">Frontend</h3>
-
-        <div class="card-lists">
-            <div class="card-list">
-                <!-- icons from fontawesome -->
-                 <p>tech language</p>
-            </div>
-            <div class="card-list">
-                <!-- icons from fontawesome -->
-                 <p>tech language</p>
-            </div>
-            <div class="card-list">
-                <!-- icons from fontawesome -->
-                 <p>tech language</p>
-            </div>
-            <div class="card-list">
-                <!-- icons from fontawesome -->
-                 <p>tech language</p>
-            </div>
-        </div>
-        </div>
-
-        <!-- backend -->
-        <div class="tech-skills-card">
-        <h3 class="card-title">Backend</h3>
-
-        <div class="card-lists">
-            <div class="card-list">
-                <!-- icons from fontawesome -->
-                 <p>tech language</p>
-            </div>
-            <div class="card-list">
-                <!-- icons from fontawesome -->
-                 <p>tech language</p>
-            </div>
-            <div class="card-list">
-                <!-- icons from fontawesome -->
-                 <p>tech language</p>
-            </div>
-            <div class="card-list">
-                <!-- icons from fontawesome -->
-                 <p>tech language</p>
-            </div>
-        </div>
-        </div>
-
-        <!-- database -->
-        <div class="tech-skills-card">
-        <h3 class="card-title">Database</h3>
-
-        <div class="card-lists">
-            <div class="card-list">
-                <!-- icons from fontawesome -->
-                 <p>tech language</p>
-            </div>
-            <div class="card-list">
-                <!-- icons from fontawesome -->
-                 <p>tech language</p>
-            </div>
-            <div class="card-list">
-                <!-- icons from fontawesome -->
-                 <p>tech language</p>
-            </div>
-            <div class="card-list">
-                <!-- icons from fontawesome -->
-                 <p>tech language</p>
-            </div>
-        </div>
-        </div>
-
+      <div class="w-full flex flex-col gap-4 px-4">
+        @for (tech of frontend; track $index) {
+          <div class="flex items-center gap-4 text-xl text-white">
+            <i [class]="tech.icon" class="w-8 text-center"></i>
+            <p class="font-medium">{{ tech.name }}</p>
+          </div>
+        }
+      </div>
     </div>
+
+    <div class="tech-skills-card border border-white rounded-xl p-6 w-full min-h-87.5 flex flex-col items-center bg-black">
+      <h3 class="text-2xl font-semibold mb-2 text-white">Backend</h3>
+      <div class="w-full border-t border-white mb-6"></div>
+      <div class="w-full flex flex-col gap-4 px-4">
+        @for (tech of backend; track $index) {
+          <div class="flex items-center gap-4 text-xl text-white">
+            <i [class]="tech.icon" class="w-8 text-center"></i>
+            <p class="font-medium">{{ tech.name }}</p>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="tech-skills-card border border-white rounded-xl p-6 w-full min-h-87.5 flex flex-col items-center bg-black">
+      <h3 class="text-2xl font-semibold mb-2 text-white">Database</h3>
+      <div class="w-full border-t border-white mb-6"></div>
+      <div class="w-full flex flex-col gap-4 px-4">
+        @for (tech of database; track $index) {
+          <div class="flex items-center gap-4 text-xl text-white">
+            <i [class]="tech.icon" class="w-8 text-center"></i>
+            <p class="font-medium">{{ tech.name }}</p>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="tech-skills-card md:col-start-2 border border-white rounded-xl p-6 w-full min-h-87.5 flex flex-col items-center mt-4 bg-black">
+      <h3 class="text-2xl font-semibold mb-2 text-white">Tools</h3>
+      <div class="w-full border-t border-white mb-6"></div>
+      <div class="w-full flex flex-col gap-4 px-4">
+        @for (tech of tools; track $index) {
+          <div class="flex items-center gap-4 text-xl text-white">
+            <i [class]="tech.icon" class="w-8 text-center"></i>
+            <p class="font-medium">{{ tech.name }}</p>
+          </div>
+        }
+      </div>
+    </div>
+
+  </div>
 </div>

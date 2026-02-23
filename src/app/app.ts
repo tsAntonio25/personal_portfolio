@@ -5,18 +5,18 @@ import { About } from "./about/about";
 import { TechSkills } from "./tech-skills/tech-skills";
 import { SoftSkills } from "./soft-skills/soft-skills";
 import { Projects } from "./projects/projects";
-import { EducExp } from "./educ-exp/educ-exp";
+import { Contact } from "./contact/contact";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Intro, About, TechSkills, SoftSkills, Projects, EducExp],
+  imports: [RouterOutlet, Intro, About, TechSkills, SoftSkills, Projects, Contact],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
   protected readonly title = signal('personal_portfolio');
-  protected currentBg = signal('bg-stone-400');
+  protected currentBg = signal({ start: '#0f172a', end: '#1e293b' });
   private el = inject(ElementRef);
   private renderer = inject(Renderer2);
 
@@ -45,13 +45,13 @@ export class App {
         
         if (entry.isIntersecting) {
           const id = entry.target.id;
-          console.log('Active Section:', id); 
 
-          if (id === 'intro') this.currentBg.set('bg-cyan-900');
-          if (id === 'about') this.currentBg.set('bg-cyan-950');
-          if (id === 'skills') this.currentBg.set('bg-sky-950');
-          if (id === 'projects') this.currentBg.set('bg-sky-800');
-          if (id === 'edu-exp') this.currentBg.set('bg-sky-500');
+          if (id === 'intro') this.currentBg.set({ start: '#0E113B', end: '#6800AB' });
+          if (id === 'about') this.currentBg.set({ start: '#0F0F26', end: '#0023AD' });
+          if (id === 'tech') this.currentBg.set({ start: '#16275E', end: '#150B73' });
+          if (id === 'soft') this.currentBg.set({ start: '#231B45', end: '#310F8A' });
+          if (id === 'projects') this.currentBg.set({ start: '#1e3a8a', end: '#1E0D45' });
+          if (id === 'contact') this.currentBg.set({ start: '#131345', end: '#2e1065' });
         }
       });
     }, { 
