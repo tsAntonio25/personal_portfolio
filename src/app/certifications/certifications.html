@@ -1,16 +1,17 @@
 <!-- certificates -->
-
 <div class="certs-container">
     <h1 class="title">Certificates</h1>]
 
     <div class="certs-cards">
         <!-- iterate  -->
-         <div class="cert-card">
-            <img src="" alt="" class="img-cert">
-            <h4 class="cert-title">Certificate Name</h4>
-            <p class="cert-desc">Lorem Ipsum dolor sit amet, consectetur adipiscing elit.</p>
+         @for(cert of certificates; track $index) {
+        <div class="cert-card">
+            <img [src]="cert.imgpic" alt="" class="img-cert">
+            <h4 class="cert-title">{{cert.title}}</h4>
+            <p class="cert-desc">{{cert.desc}}</p>
 
-            <button type="button" class="cert-btn">View</button>
+            <a [href]="cert.link" target="_blank" rel="noopener noreferrer"><button type="button" class="cert-btn">View</button></a>
          </div>
+         }
     </div>
 </div>

@@ -64,4 +64,14 @@ export class Projects {
     }
   }
 
+  getTransform() {
+  const isMobile = window.innerWidth < 768;
+  const slideWidth = isMobile ? 296 : 382; 
+  
+  const offset = (this.activeIndex * slideWidth);
+  const centering = ( (this.projects.length - 1) * (slideWidth / 2) );
+  
+  return `translateX(calc(-50% - ${offset}px + ${centering}px))`;
+}
+
 }

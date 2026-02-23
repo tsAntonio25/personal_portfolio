@@ -1,6 +1,6 @@
 <div [style.--bg-start]="currentBg().start"
      [style.--bg-end]="currentBg().end"
-     class="main-container transition-all duration-1000 ease-in-out min-h-screen w-full font-sans">
+     class="main-container h-screen w-full overflow-y-auto snap-y snap-proximity scroll-smooth transition-all duration-5000">
   
   <nav class="fixed top-0 left-0 z-50 flex items-center justify-between w-full h-24 bg-transparent">
     <div class="z-50 flex items-center justify-center p-4 ml-4 md:ml-8 bg-black w-16 h-16 md:w-20 md:h-20 rounded-b-[30px] md:rounded-b-[40px] hover:w-30 hover:h-30 hover:mt:5 transition-all border-2 border-slate-200">
@@ -28,34 +28,32 @@
     </div>
   </nav>
 
-  <section id="intro">
+  <section id="intro" class="snap-start min-h-screen w-full">
     <app-intro></app-intro>
-    <!--  key featured project here  -->
   </section>
 
-  <section id="about">
+  <section id="featured" class="snap-start min-h-screen w-full">
+    <app-featured-projects></app-featured-projects>
+  </section>
+
+  <section id="about" class="snap-start min-h-screen w-full">
     <app-about></app-about>
   </section>
 
-  <section id="tech">
+  <section id="tech" class="snap-start min-h-screen w-full">
     <app-tech-skills></app-tech-skills>
   </section>
 
-  <section id="soft">
+  <section id="soft" class="snap-start min-h-screen w-full">
     <app-soft-skills></app-soft-skills>
   </section>
 
-  <section id="projects">
+  <section id="projects" class="snap-start min-h-screen w-full">
     <app-projects></app-projects>
   </section>
 
-  <section id="contact">
+  <section id="contact" class="snap-start min-h-screen w-full">
     <app-contact></app-contact>
-    <!--  resume here  -->
   </section>
 
-
-
 </div>
-
-<router-outlet />

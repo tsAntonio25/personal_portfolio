@@ -1,40 +1,44 @@
-<div class="relative w-full py-24 scroll-reveal">
-  <h1 class="text-center text-5xl font-bold text-white mb-4">My Projects</h1>
-  <div class="w-64 border-t-2 border-white mx-auto mb-20"></div>
+<div class="relative w-full py-12 md:py-24 scroll-reveal overflow-hidden">
+  <h1 class="text-center text-3xl md:text-5xl font-bold text-white mb-4">My Projects</h1>
+  <div class="w-32 md:w-64 border-t-2 border-white mx-auto mb-10 md:mb-20"></div>
 
-  <button (click)="prev()" class="absolute left-4 lg:left-10 top-1/2 -translate-y-1/2 z-50 bg-black p-4 border border-white rounded-full text-white hover:bg-slate-800 transition-all shadow-xl">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </button>
+  <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-4 z-50 md:contents">
+    <button (click)="prev()" class="md:absolute md:left-4 lg:left-10 md:top-1/2 md:-translate-y-1/2 bg-black/80 p-3 md:p-4 border border-white rounded-full text-white hover:bg-slate-800 transition-all shadow-xl">
+      <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
 
-  <button (click)="next()" class="absolute right-4 lg:right-10 top-1/2 -translate-y-1/2 z-50 bg-black border border-white p-4 rounded-full text-white hover:bg-slate-800 transition-all shadow-xl">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </button>
+    <button (click)="next()" class="md:absolute md:right-4 lg:right-10 md:top-1/2 md:-translate-y-1/2 bg-black/80 border border-white p-3 md:p-4 rounded-full text-white hover:bg-slate-800 transition-all shadow-xl">
+      <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
 
-  <div class="relative mx-auto pt-3 overflow-hidden scroll-reveal delay-600" style="max-width: 1200px; height: 750px;">
+  <div class="relative mx-auto pt-3 overflow-visible md:overflow-hidden h-150 md:h-187.5 w-full max-w-350">
     
-    <div class="flex items-center absolute left-1/2 transition-transform duration-500 ease-in-out py-12 scroll-reveal delay-600"
-         [style.transform]="'translateX(calc(-50% - ' + (activeIndex * 382) + 'px + ' + ( (projects.length - 1) * 191 ) + 'px))'"
+    <div class="flex items-center absolute left-1/2 transition-transform duration-500 ease-in-out py-12"
+         [style.transform]="getTransform()"
          style="width: max-content;">
       
       @for(project of projects; track $index) {
         <div 
-          class="shrink-0 w-87.5 bg-black rounded-xl shadow-2xl p-6 transition-all duration-500 mx-4 border border-slate-600"
+          class="shrink-0 w-70 sm:w-[320px] md:w-87.5 bg-black rounded-xl shadow-2xl p-4 md:p-6 transition-all duration-500 mx-2 md:mx-4 border border-slate-600"
           [ngClass]="{
-            'scale-110 z-20 opacity-100 shadow-black/20': $index === activeIndex,
-            'scale-90 opacity-40 grayscale blur-[1px]': $index !== activeIndex
+            'scale-105 md:scale-110 z-20 opacity-100 shadow-white/5': $index === activeIndex,
+            'scale-90 opacity-40 grayscale blur-[1px] md:blur-[2px]': $index !== activeIndex
           }"
         >
-          <div class="w-full h-48 bg-gray-200 rounded-lg mb-6 flex items-center justify-center">
-            <img [src]="project.imagepic" class="object-cover w-full h-full rounded-lg">
+          <div class="w-full h-32 sm:h-40 md:h-48 bg-gray-900 rounded-lg mb-4 md:mb-6 overflow-hidden">
+            <img [src]="project.imagepic" class="object-cover w-full h-full hover:scale-110 transition-transform duration-500">
           </div>
 
           <div class="text-center text-white">
-            <h4 class="text-xl font-bold mb-2">{{project.title}}</h4>
-            <p class="text-gray-300 text-sm italic mb-6 h-20 overflow-visible text-ellipsis">"{{project.desc}}"</p>
-            <p class="text-xs font-mono font-bold text-slate-300 mb-6">{{project.techstack}}</p>
+            <h4 class="text-lg md:text-xl font-bold mb-2">{{project.title}}</h4>
+            <p class="text-gray-400 text-xs md:text-sm italic mb-4 h-16 md:h-20 overflow-hidden">"{{project.desc}}"</p>
+            <p class="text-[10px] md:text-xs font-mono font-bold text-indigo-400 mb-4">{{project.techstack}}</p>
             
-            <a [href]="project.repolink" target="_blank">
-              <button class="bg-[#1F2937] text-white px-8 py-2 rounded-md hover:scale-105 transition">View Repository</button>
+            <a [href]="project.repolink" target="_blank" class="inline-block">
+              <button class="bg-slate-800 text-white px-6 md:px-8 py-2 text-sm md:text-base rounded-md hover:bg-white hover:text-black transition-all">
+                View Repository
+              </button>
             </a>
           </div>
         </div>
