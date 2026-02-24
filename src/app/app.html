@@ -3,88 +3,100 @@
      [class.light-theme]="!isDarkMode()"
      class="main-container h-screen w-full overflow-y-auto snap-y snap-proximity scroll-smooth transition-all duration-500">
   
-  <nav class="fixed top-0 left-0 z-50 flex items-center justify-between w-full h-24 bg-transparent">
+  <nav role="navigation" aria-label="Main Navigation" class="fixed top-0 left-0 z-50 flex items-center justify-between w-full h-24 bg-transparent transition-all duration-500">
     
     <div (click)="toggleTheme()"
+         (keydown.enter)="toggleTheme()"
+         role="button"
+         tabindex="0"
+         [attr.aria-label]="isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
+         [attr.aria-pressed]="!isDarkMode()"
          [ngClass]="isDarkMode() ? 'bg-[#191423] border-[#885ee2]' : 'bg-[#b5a462] border-[#b5a462]'"
-         class="z-50 cursor-pointer flex items-center justify-center p-4 ml-4 md:ml-8 w-16 h-16 md:w-20 md:h-20 rounded-b-[30px] md:rounded-b-[40px] transition-all border-2 active:scale-95 shadow-lg group">
+         class="z-50 cursor-pointer flex items-center justify-center p-4 ml-4 md:ml-8 w-16 h-16 md:w-20 md:h-20 rounded-b-[30px] md:rounded-b-[40px] border-2 active:scale-95 shadow-lg group transition-all duration-500">
       
       <img [src]="isDarkMode() ? '/assets/images/logo-white.png' : '/assets/images/logo-black.png'" 
-           alt="Logo" 
-           class="w-full h-auto transition-transform duration-300 group-hover:rotate-12">
+           alt="Trishia Mae Antonio Logo" 
+           class="w-full h-auto transition-all duration-500 group-hover:rotate-12">
     </div>
 
-    <input type="checkbox" id="menu-toggle" class="hidden peer">
+    <input type="checkbox" id="menu-toggle" class="hidden peer" aria-hidden="true">
 
     <label for="menu-toggle" 
+           role="button"
+           aria-label="Open navigation menu"
            [ngClass]="isDarkMode() ? 'text-white' : 'text-black'"
-           class="md:hidden mr-6 text-3xl cursor-pointer z-50 peer-checked:hidden">
-      <i class="fa-solid fa-bars"></i>
+           class="md:hidden mr-6 text-3xl cursor-pointer z-50 peer-checked:hidden transition-colors duration-500">
+      <i class="fa-solid fa-bars" aria-hidden="true"></i>
     </label>
     
     <label for="menu-toggle" 
+           role="button"
+           aria-label="Close navigation menu"
            [ngClass]="isDarkMode() ? 'text-white' : 'text-black'"
-           class="hidden peer-checked:block md:hidden mr-6 text-3xl cursor-pointer z-50">
-      <i class="fa-solid fa-xmark"></i>
+           class="hidden peer-checked:block md:hidden mr-6 text-3xl cursor-pointer z-50 transition-colors duration-500">
+      <i class="fa-solid fa-xmark" aria-hidden="true"></i>
     </label>
 
-    <div [ngClass]="isDarkMode() ? 'bg-[#191423] md:bg-[#191423] border-[#885ee2] md:border-[#885ee2]' : 'bg-[#b5a462] md:bg-[#b5a462] border-[#b5a462] md:border-[#b5a462]'"
+    <div id="main-menu"
+         [ngClass]="isDarkMode() ? 'bg-[#191423] border-[#885ee2]' : 'bg-[#b5a462] border-[#b5a462]'"
          class="fixed top-0 right-0 h-screen w-64 border-l flex flex-col items-center justify-center space-y-8 
-                translate-x-full transition-transform duration-300 ease-in-out peer-checked:translate-x-0
+                translate-x-full transition-all duration-500 ease-in-out peer-checked:translate-x-0
                 md:static md:h-full md:w-auto md:flex-row md:space-y-0 md:space-x-10 md:translate-x-0 md:border-2 md:rounded-bl-[40px] md:px-10">
       
       <a href="#intro" 
          [ngClass]="isDarkMode() ? 'text-white hover:text-[#885ee2]' : 'text-black hover:text-[#4D462D]'"
-         class="text-lg font-medium transition-all hover:px-3">Home</a>
+         class="text-lg font-medium transition-all duration-500 hover:px-3">Home</a>
       
       <a href="#about" 
          [ngClass]="isDarkMode() ? 'text-white hover:text-[#885ee2]' : 'text-black hover:text-[#4D462D]'"
-         class="text-lg font-medium transition-all hover:px-3">About</a>
+         class="text-lg font-medium transition-all duration-500 hover:px-3">About</a>
       
       <a href="#projects" 
          [ngClass]="isDarkMode() ? 'text-white hover:text-[#885ee2]' : 'text-black hover:text-[#4D462D]'"
-         class="text-lg font-medium transition-all hover:px-3">Projects</a>
+         class="text-lg font-medium transition-all duration-500 hover:px-3">Projects</a>
       
       <a href="#contact" 
          [ngClass]="isDarkMode() ? 'text-white hover:text-[#885ee2]' : 'text-black hover:text-[#4D462D]'"
-         class="text-lg font-medium transition-all hover:px-3">Contact</a>
+         class="text-lg font-medium transition-all duration-500 hover:px-3">Contact</a>
     </div>
   </nav>
 
-  <section id="intro" class="snap-start min-h-screen w-full">
-    <app-intro [isDarkMode]="isDarkMode()"></app-intro>
-  </section>
+  <main>
+    <section id="intro" role="region" aria-label="Introduction" class="snap-start min-h-screen w-full">
+      <app-intro [isDarkMode]="isDarkMode()"></app-intro>
+    </section>
 
-  <section id="featured" class="snap-start min-h-screen w-full">
-    <app-featured-projects [isDarkMode]="isDarkMode()"></app-featured-projects>
-  </section>
+    <section id="featured" role="region" aria-label="Featured Projects" class="snap-start min-h-screen w-full">
+      <app-featured-projects [isDarkMode]="isDarkMode()"></app-featured-projects>
+    </section>
 
-  <section id="about" class="snap-start min-h-screen w-full">
-    <app-about [isDarkMode]="isDarkMode()"></app-about>
-  </section>
+    <section id="about" role="region" aria-label="About Me" class="snap-start min-h-screen w-full">
+      <app-about [isDarkMode]="isDarkMode()"></app-about>
+    </section>
 
-  <section id="tech" class="snap-start min-h-screen w-full">
-    <app-tech-skills [isDarkMode]="isDarkMode()"></app-tech-skills>
-  </section>
+    <section id="tech" role="region" aria-label="Technical Skills" class="snap-start min-h-screen w-full">
+      <app-tech-skills [isDarkMode]="isDarkMode()"></app-tech-skills>
+    </section>
 
-  <section id="soft" class="snap-start min-h-screen w-full">
-    <app-soft-skills [isDarkMode]="isDarkMode()"></app-soft-skills>
-  </section>
+    <section id="soft" role="region" aria-label="Professional Qualities" class="snap-start min-h-screen w-full">
+      <app-soft-skills [isDarkMode]="isDarkMode()"></app-soft-skills>
+    </section>
 
-  <section id="certs" class="snap-start min-h-screen w-full">
-    <app-certifications [isDarkMode]="isDarkMode()"></app-certifications>
-  </section>
+    <section id="certs" role="region" aria-label="Certifications" class="snap-start min-h-screen w-full">
+      <app-certifications [isDarkMode]="isDarkMode()"></app-certifications>
+    </section>
 
-  <section id="projects" class="snap-start min-h-screen w-full">
-    <app-projects [isDarkMode]="isDarkMode()"></app-projects>
-  </section>
+    <section id="projects" role="region" aria-label="Full Project Gallery" class="snap-start min-h-screen w-full">
+      <app-projects [isDarkMode]="isDarkMode()"></app-projects>
+    </section>
 
-  <section id="contact" class="snap-start min-h-screen w-full">
-    <app-contact [isDarkMode]="isDarkMode()"></app-contact>
-  </section>
+    <section id="contact" role="region" aria-label="Contact Information" class="snap-start min-h-screen w-full">
+      <app-contact [isDarkMode]="isDarkMode()"></app-contact>
+    </section>
 
-  <section id="resume" class="snap-start min-h-screen w-full">
-    <app-resume [isDarkMode]="isDarkMode()"></app-resume>
-  </section>
+    <section id="resume" role="region" aria-label="Resume Download" class="snap-start min-h-screen w-full">
+      <app-resume [isDarkMode]="isDarkMode()"></app-resume>
+    </section>
+  </main>
 
 </div>

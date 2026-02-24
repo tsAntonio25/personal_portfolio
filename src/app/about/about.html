@@ -1,11 +1,16 @@
-<div id="about" class="about-container flex flex-col items-center justify-center min-h-screen px-6 md:px-20 py-24 overflow-hidden transition-colors duration-500">
+<section id="about" 
+         role="region" 
+         aria-labelledby="about-heading"
+         class="about-container flex flex-col items-center justify-center min-h-screen px-6 md:px-20 py-24 overflow-hidden transition-colors duration-500">
     
     <div class="flex flex-col items-center mb-16 scroll-reveal">
-        <h1 [ngClass]="isDarkMode ? 'text-white' : 'text-black'" 
+        <h1 id="about-heading"
+            [ngClass]="isDarkMode ? 'text-white' : 'text-black'" 
             class="text-4xl md:text-5xl font-bold mb-4 transition-colors">
             About Me
         </h1>
         <div [ngClass]="isDarkMode ? 'border-[#885ee2]' : 'border-[#4D462D]'" 
+             aria-hidden="true"
              class="w-32 md:w-64 border-t-2 transition-colors"></div>
     </div>
 
@@ -14,11 +19,11 @@
         <div class="paragraphs flex flex-col space-y-6 w-full md:w-1/2 scroll-reveal delay-200">
             <p [ngClass]="isDarkMode ? 'text-slate-300' : 'text-slate-700'" 
                class="text-lg md:text-xl leading-relaxed transition-colors">
-                Hi, I’m Trishia Mae Antonio! I’m an aspiring Full-Stack Developer who loves to build websites and systems for fun. My journey into tech started with a curiosity for how the web works, that now leads me into developing and deploying websites of my own! I believe that curiosity matters which leads to great innovations and ideas and I carry that mindset into every line of code I write.
+               Hi, I’m Trishia Mae Antonio! I’m an aspiring Full-Stack Developer who loves to build websites and systems for fun. My journey into tech started with a curiosity for how the web works, that now leads me into developing and deploying websites of my own! I believe that curiosity matters which leads to great innovations and ideas and I carry that mindset into every line of code I write.
             </p>
             <p [ngClass]="isDarkMode ? 'text-slate-300' : 'text-slate-700'" 
                class="text-lg md:text-xl leading-relaxed transition-colors">
-                Outside of development, I'm creative at heart, whether I’m singing, playing guitar, or diving into a good book and anime. I'm a lifelong learner dedicated to turning fresh ideas into functional digital reality.
+               Outside of development, I'm creative at heart, whether I’m singing, playing guitar, or diving into a good book and anime. I'm a lifelong learner dedicated to turning fresh ideas into functional digital reality.
             </p>
         </div>
 
@@ -28,10 +33,11 @@
                   : 'bg-[#f8f6ef] border-[#b5a462] shadow-2xl'" 
                  class="p-4 md:p-8 rounded-2xl border transform transition-all hover:scale-105 duration-500">
                  
-                 <img src="/assets/images/image-me.jpg" alt="About Me" 
+                 <img src="/assets/images/image-me.jpg" 
+                      alt="Trishia Mae Antonio smiling, representing the person behind the development work" 
                       [ngClass]="isDarkMode ? 'brightness-90 grayscale-[0.2]' : 'brightness-100'"
                       class="w-72 md:w-96 h-auto rounded-lg transition-all duration-700 object-cover">
             </div>
         </div>
     </div>
-</div>
+</section>

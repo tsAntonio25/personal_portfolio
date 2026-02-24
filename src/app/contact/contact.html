@@ -1,88 +1,108 @@
-<div class="min-h-screen flex items-center justify-center py-10 md:py-20 scroll-reveal transition-colors duration-500">
+<section 
+  id="contact"
+  aria-labelledby="contact-heading"
+  class="min-h-screen flex items-center justify-center py-10 md:py-20 scroll-reveal transition-colors duration-500">
+  
   <div class="w-full max-w-4xl mx-auto p-4 md:p-8 font-sans">
     
     <div class="text-center mb-8 md:mb-12">
-      <h1 [ngClass]="isDarkMode ? 'text-white' : 'text-black'" 
-          class="text-3xl md:text-5xl font-bold mb-2 tracking-wide transition-colors">Contact</h1>
-      <hr [ngClass]="isDarkMode ? 'border-[#885ee2] ' : 'border-[#b5a462]'" 
+      <h1 id="contact-heading"
+          [ngClass]="isDarkMode ? 'text-white' : 'text-black'" 
+          class="text-3xl md:text-5xl font-bold mb-2 tracking-wide transition-colors">
+          Contact
+      </h1>
+      <hr [ngClass]="isDarkMode ? 'border-[#885ee2]' : 'border-[#b5a462]'" 
+          aria-hidden="true"
           class="w-1/3 mx-auto transition-colors">
     </div>
 
     <div class="flex flex-col md:flex-row gap-0 scroll-reveal delay-600 overflow-hidden shadow-2xl rounded-2xl">
       
-      <div [ngClass]="isDarkMode 
-            ? 'bg-[#191423] border-[#885ee2] ' 
-            : 'bg-[#4d462d] border-[#b5a462]'"
+      <div [ngClass]="isDarkMode ? 'bg-[#191423] border-[#885ee2]' : 'bg-[#4d462d] border-[#b5a462]'"
            class="w-full md:w-2/5 p-8 md:p-10 rounded-t-2xl md:rounded-t-none md:rounded-l-2xl border-t border-x md:border-y md:border-r-0 md:border-l transition-all duration-500">
-        <h3 class="text-2xl md:text-3xl font-semibold mb-4 text-white">Message me</h3>
+        <h2 class="text-2xl md:text-3xl font-semibold mb-4 text-white">Message me</h2>
         <p [ngClass]="isDarkMode ? 'text-slate-400' : 'text-indigo-100'" 
            class="text-sm mb-8 md:mb-10 transition-colors">
           I'm currently open to new opportunities. Let's build something together!
         </p>
 
-        <div class="space-y-4 md:space-y-6">
+        <nav class="space-y-4 md:space-y-6" aria-label="Social media contact links">
           @for(socmed of socmeds; track $index) {
-            <a [href]="socmed.link" target="_blank" class="flex items-center gap-4 text-base md:text-lg no-underline text-white hover:opacity-70 transition-opacity" [class]="socmed.hoverstyle">
-              <i [class]="socmed.icon" class="text-xl"></i> 
+            <a [href]="socmed.link" 
+               target="_blank" 
+               [attr.aria-label]="'Visit my ' + socmed.name"
+               class="flex items-center gap-4 text-base md:text-lg no-underline text-white hover:opacity-70 transition-opacity" 
+               [class]="socmed.hoverstyle">
+              <i [class]="socmed.icon" class="text-xl" aria-hidden="true"></i> 
               <p>{{socmed.name}}</p>
             </a>
           }
-        </div>
+        </nav>
       </div>
 
-      <div [ngClass]="isDarkMode 
-            ? 'bg-[#2e2938] border-[#885ee2] ' 
-            : 'bg-[#f8f6ef] border-[#b5a462]'"
+      <div [ngClass]="isDarkMode ? 'bg-[#2e2938] border-[#885ee2]' : 'bg-[#f8f6ef] border-[#b5a462]'"
            class="w-full md:w-3/5 border-x border-b md:border-y md:border-l-0 md:border-r p-8 md:p-10 rounded-b-2xl md:rounded-b-none md:rounded-r-2xl transition-all duration-500">
         
         <form [formGroup]="contactForm" (ngSubmit)="sendEmail($event)" class="flex flex-col gap-5">
     
           <div class="flex flex-col gap-2">
-            <label [ngClass]="isDarkMode ? 'text-white' : 'text-slate-800'" class="text-md font-medium transition-colors">Name</label>
+            <label for="name" [ngClass]="isDarkMode ? 'text-white' : 'text-slate-800'" class="text-md font-medium transition-colors">Name</label>
             <input 
-              required
+              id="name"
               formControlName="name" 
-              name="name"
               type="text" 
               placeholder="Your Name"
-              [ngClass]="isDarkMode ? 'text-white focus:border-[#885ee2]' : 'text-slate-900 focus:border-[#b5a462] border-slate-300'"
+              [attr.aria-invalid]="contactForm.get('name')?.invalid && contactForm.get('name')?.touched"
+              [attr.aria-describedby]="contactForm.get('name')?.invalid && contactForm.get('name')?.touched ? 'name-error' : null"
+              [ngClass]="isDarkMode ? 'text-white focus:border-[#885ee2] border-white/40' : 'text-slate-900 focus:border-[#b5a462] border-slate-300'"
               class="bg-transparent w-full border rounded-md p-3 outline-none transition-all"
-              [class.border-red-500]="contactForm.get('name')?.invalid && contactForm.get('name')?.touched"
-              [class.border-white/40]="isDarkMode && !(contactForm.get('name')?.invalid && contactForm.get('name')?.touched)">
-            @if (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
-              <span class="text-red-500 text-xs">Please enter your name.</span>
-            }
+              [class.border-red-500]="contactForm.get('name')?.invalid && contactForm.get('name')?.touched">
+            
+            <div id="name-error" aria-live="polite">
+                @if (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
+                  <span class="text-red-500 text-xs">Please enter your name.</span>
+                }
+            </div>
           </div>
 
           <div class="flex flex-col gap-2">
-            <label [ngClass]="isDarkMode ? 'text-white' : 'text-slate-800'" class="text-md font-medium transition-colors">Email Address</label>
+            <label for="email" [ngClass]="isDarkMode ? 'text-white' : 'text-slate-800'" class="text-md font-medium transition-colors">Email Address</label>
             <input 
+              id="email"
               formControlName="email1" 
               type="email" 
               placeholder="youremail@email.com"
-              [ngClass]="isDarkMode ? 'text-white focus:border-[#885ee2]' : 'text-slate-900 focus:border-[#b5a462] border-slate-300'"
+              [attr.aria-invalid]="contactForm.get('email1')?.invalid && contactForm.get('email1')?.touched"
+              [attr.aria-describedby]="contactForm.get('email1')?.invalid && contactForm.get('email1')?.touched ? 'email-error' : null"
+              [ngClass]="isDarkMode ? 'text-white focus:border-[#885ee2] border-white/40' : 'text-slate-900 focus:border-[#b5a462] border-slate-300'"
               class="bg-transparent w-full border rounded-md p-3 transition-all"
-              [class.border-red-500]="contactForm.get('email1')?.invalid && contactForm.get('email1')?.touched"
-              [class.border-white/40]="isDarkMode && !(contactForm.get('email1')?.invalid && contactForm.get('email1')?.touched)">
-            @if (contactForm.get('email1')?.touched && contactForm.get('email1')?.invalid) {
-              <span class="text-red-500 text-xs">Please enter a valid email address.</span>
-            }
+              [class.border-red-500]="contactForm.get('email1')?.invalid && contactForm.get('email1')?.touched">
+            
+            <div id="email-error" aria-live="polite">
+                @if (contactForm.get('email1')?.touched && contactForm.get('email1')?.invalid) {
+                  <span class="text-red-500 text-xs">Please enter a valid email address.</span>
+                }
+            </div>
           </div>
 
           <div class="flex flex-col gap-2">
-            <label [ngClass]="isDarkMode ? 'text-white' : 'text-slate-800'" class="text-md font-medium transition-colors">Message</label>
+            <label for="message" [ngClass]="isDarkMode ? 'text-white' : 'text-slate-800'" class="text-md font-medium transition-colors">Message</label>
             <textarea 
+              id="message"
               formControlName="message" 
-              name="message"
               rows="5" 
               placeholder="How can I help you?"
-              [ngClass]="isDarkMode ? 'text-white focus:border-[#885ee2]' : 'text-slate-900 focus:border-[#b5a462] border-slate-300'"
+              [attr.aria-invalid]="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"
+              [attr.aria-describedby]="contactForm.get('message')?.invalid && contactForm.get('message')?.touched ? 'message-error' : null"
+              [ngClass]="isDarkMode ? 'text-white focus:border-[#885ee2] border-white/40' : 'text-slate-900 focus:border-[#b5a462] border-slate-300'"
               class="bg-transparent w-full border rounded-md p-3 outline-none resize-none transition-all"
-              [class.border-red-500]="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"
-              [class.border-white/40]="isDarkMode && !(contactForm.get('message')?.invalid && contactForm.get('message')?.touched)"></textarea>
-            @if (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) {
-              <span class="text-red-500 text-xs">Message must be at least 10 characters long.</span>
-            }
+              [class.border-red-500]="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"></textarea>
+            
+            <div id="message-error" aria-live="polite">
+                @if (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) {
+                  <span class="text-red-500 text-xs">Message must be at least 10 characters long.</span>
+                }
+            </div>
           </div>
 
           <button 
@@ -98,4 +118,4 @@
       </div>
     </div>
   </div>
-</div>
+</section>

@@ -5,12 +5,13 @@
              class="p-4 md:p-8 rounded-2xl border transition-all duration-500"
              [class.border-white]="isDarkMode"
              [class.border-slate-200]="!isDarkMode">
-            <img src="/assets/images/image-me.jpg" alt="Profile" 
+            <img src="/assets/images/image-me.jpg" alt="Trishia Mae Antonio - Profile Photo" 
                  class="w-64 md:w-100 h-auto rounded-lg mx-auto transition-all duration-700">
         </div>
     </div>
 
     <div [ngClass]="isDarkMode ? 'border-[#885ee2]' : 'border-[#4D462D]'"
+         aria-hidden="true"
          class="w-full md:w-0 md:h-64 border-t md:border-t-0 md:border-l my-8 md:mx-12 animate-fade-in delay-300 transition-colors">
     </div>
 
@@ -20,17 +21,42 @@
             Trishia Mae Antonio
         </h1>
         
-        <h3 [ngClass]="isDarkMode ? 'text-[#885ee2]' : 'text-[#4d462d]'" 
+        <h2 [ngClass]="isDarkMode ? 'text-[#885ee2]' : 'text-[#4d462d]'" 
             class="text-xl md:text-3xl mb-6 font-medium transition-colors">
             Aspiring Full Stack Developer
-        </h3>
+        </h2>
         
         <div [ngClass]="isDarkMode ? 'text-[#76727c]' : 'text-[#9f9057]'" 
+             role="list"
+             aria-label="Social media links"
              class="flex items-center justify-center md:justify-start space-x-8 text-3xl mb-10 transition-colors">
-          <a href="https://www.linkedin.com/in/trishia-mae-antonio-1b1033298/" target="_blank" class="hover:text-blue-400 transition-transform hover:-translate-y-1"><i class="fa-brands fa-linkedin"></i></a>
-          <a href="https://www.facebook.com/trishia.antoniolololol/" target="_blank" class="hover:text-blue-600 transition-transform hover:-translate-y-1"><i class="fa-brands fa-facebook"></i></a>
-          <a href="https://github.com/tsAntonio25" target="_blank" class="hover:text-gray-900 dark:hover:text-white transition-transform hover:-translate-y-1"><i class="fa-brands fa-github"></i></a>
-          <a href="mailto:trishiamaeantonio@gmail.com" target="_blank" class="hover:text-red-600 transition-transform hover:-translate-y-1"><i class="fa-solid fa-envelope"></i></a>
+          
+          <a href="https://www.linkedin.com/in/trishia-mae-antonio-1b1033298/" 
+             target="_blank" 
+             aria-label="LinkedIn Profile"
+             class="hover:text-blue-400 transition-transform hover:-translate-y-1">
+             <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+          </a>
+
+          <a href="https://www.facebook.com/trishia.antoniolololol/" 
+             target="_blank" 
+             aria-label="Facebook Profile"
+             class="hover:text-blue-600 transition-transform hover:-translate-y-1">
+             <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+          </a>
+
+          <a href="https://github.com/tsAntonio25" 
+             target="_blank" 
+             aria-label="GitHub Profile"
+             class="hover:text-gray-900 dark:hover:text-white transition-transform hover:-translate-y-1">
+             <i class="fa-brands fa-github" aria-hidden="true"></i>
+          </a>
+
+          <a href="mailto:trishiamaeantonio@gmail.com" 
+             aria-label="Send an Email"
+             class="hover:text-red-600 transition-transform hover:-translate-y-1">
+             <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          </a>
         </div>
 
         <a href="https://github.com/tsAntonio25" target="_blank" rel="noopener noreferrer">

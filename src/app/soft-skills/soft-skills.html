@@ -1,25 +1,30 @@
-<div class="flex flex-col items-center p-6 md:p-10 font-sans my-5 md:my-10 w-full scroll-reveal transition-colors duration-500">
+<section 
+  aria-labelledby="soft-skills-heading" 
+  class="flex flex-col items-center p-6 md:p-10 font-sans my-5 md:my-10 w-full scroll-reveal transition-colors duration-500">
   
-  <h1 [ngClass]="isDarkMode ? 'text-white' : 'text-black'"
+  <h1 id="soft-skills-heading"
+      [ngClass]="isDarkMode ? 'text-white' : 'text-black'"
       class="text-3xl md:text-4xl font-bold mb-8 md:mb-12 transition-colors">
     Soft Skills
   </h1>
 
-  <div class="flex flex-col gap-6 w-full max-w-4xl">
+  <div class="flex flex-col gap-6 w-full max-w-4xl" role="list">
     
     @for (skill of softskills; track $index) {
-      <div [ngClass]="isDarkMode 
-            ? 'bg-[#191423] border-[#885ee2]' 
-            : 'bg-[#f8f6ef] border-[#b5a462] shadow-lg'"
-           class="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-8 p-6 md:p-8 
-                  border rounded-4xl w-full backdrop-blur-sm 
-                  transition-all duration-500 hover:border-indigo-500/50 hover:-translate-y-1">
+      <div role="listitem"
+           [ngClass]="isDarkMode
+             ? 'bg-[#191423] border-[#885ee2]' 
+             : 'bg-[#f8f6ef] border-[#b5a462] shadow-lg'"
+            class="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-8 p-6 md:p-8 
+                   border rounded-4xl w-full backdrop-blur-sm 
+                   transition-all duration-500 hover:border-indigo-500/50 hover:-translate-y-1">
         
         <div [ngClass]="isDarkMode ? 'bg-white/5' : 'bg-indigo-50'"
+             aria-hidden="true"
              class="shrink-0 flex items-center justify-center w-16 h-16 rounded-2xl transition-colors">
           <i [class]="skill.icon" 
              [ngClass]="isDarkMode ? 'text-[#92b2e5]' : 'text-[#1e56a3]'"
-             class="text-3xl md:text-4xl"></i>
+             class="text-3xl md:text-4xl transition-colors"></i>
         </div>
 
         <div class="flex flex-col gap-2 text-center md:text-left">
@@ -37,4 +42,4 @@
     }
 
   </div>
-</div>
+</section>

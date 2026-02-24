@@ -1,4 +1,6 @@
-<div class="py-12 md:py-16 px-4 flex flex-col items-center justify-center min-h-screen scroll-reveal transition-colors duration-500">
+<div class="py-12 md:py-16 px-4 flex flex-col items-center justify-center min-h-screen scroll-reveal transition-colors duration-500"
+     role="region" 
+     aria-label="Featured Projects Gallery">
   
   <h1 [ngClass]="isDarkMode ? 'text-white' : 'text-black'"
       class="text-3xl md:text-4xl font-bold mb-8 md:mb-12 text-center tracking-tight transition-colors">
@@ -9,15 +11,19 @@
     <div [ngClass]="isDarkMode 
           ? 'bg-[#191423] border-[#885ee2]' 
           : 'bg-[#f8f6ef] border-[#b5a462] shadow-xl'"
-         class="carousel-container backdrop-blur-md border rounded-4xl p-6 md:p-12 transition-all duration-700">
+         class="carousel-container backdrop-blur-md border rounded-4xl p-6 md:p-12 transition-all duration-700"
+         aria-live="polite"
+         aria-atomic="true">
       
       @for(proj of projects; track $index) {
         @if(currentIndex === $index) {
-          <div class="flex flex-col items-center animate-fade-in">
+          <div class="flex flex-col items-center animate-fade-in"
+               role="group"
+               [attr.aria-label]="'Project ' + ($index + 1) + ' of ' + projects.length">
             
             <div [ngClass]="isDarkMode ? 'border-[#885ee2] bg-slate-900' : 'border-[#b5a462] bg-slate-100'"
                  class="w-full max-w-2xl aspect-16/10 md:aspect-video rounded-2xl mb-6 md:mb-8 overflow-hidden border shadow-2xl transition-colors">
-              <img [src]="proj.img" [alt]="proj.title" class="w-full h-full object-cover">
+              <img [src]="proj.img" [alt]="proj.title + ' project preview'" class="w-full h-full object-cover">
             </div>
 
             <h3 [ngClass]="isDarkMode ? 'text-white' : 'text-slate-900'"
@@ -31,11 +37,13 @@
             </p>
             
             <p [ngClass]="isDarkMode ? 'text-[#92b2e5]' : 'text-[#756a42]'"
-               class="font-mono text-[10px] md:text-xs mb-8 tracking-[0.2em] uppercase text-center font-bold">
+               class="font-mono text-[10px] md:text-xs mb-8 tracking-[0.2em] uppercase text-center font-bold"
+               [attr.aria-label]="'Technologies used: ' + proj.techstack">
               {{proj.techstack}}
             </p>
 
             <a [href]="proj.link" target="_blank" 
+               [attr.aria-label]="'View live site for ' + proj.title"
                [ngClass]="isDarkMode 
                  ? 'bg-[#6f44dc] text-white border-transparent hover:bg-[#2e2938]' 
                  : 'bg-[#b5a462] text-black border-transparent hover:bg-[#e1e1e1] shadow-md'"
@@ -47,14 +55,17 @@
       }
     </div>
 
-    <div class="flex justify-center gap-4 mt-8">
-      @for(dot of [0, 1]; track $index) {
+    <div class="flex justify-center gap-4 mt-8" role="tablist" aria-label="Select featured project">
+      @for(dot of projects; track $index) {
         <button 
           (click)="setSlide($index)"
+          role="tab"
+          [attr.aria-selected]="currentIndex === $index"
+          [attr.aria-label]="'Go to project ' + ($index + 1)"
           [ngClass]="currentIndex === $index 
             ? (isDarkMode ? 'w-10 bg-white' : 'w-10 bg-[#4d462d]') 
             : (isDarkMode ? 'w-4 bg-[#45404e]' : 'w-4 bg-[#b4b3b0]')"
-          class="h-2 md:h-2.5 rounded-full transition-all duration-500 cursor-pointer">
+          class="h-2 md:h-2.5 rounded-full transition-all duration-500 cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
         </button>
       }
     </div>
