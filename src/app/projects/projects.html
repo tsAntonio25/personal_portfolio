@@ -7,35 +7,35 @@
   <div [ngClass]="isDarkMode ? 'border-[#885ee2] ' : 'border-[#b5a462]'" 
        class="w-32 md:w-64 border-t-2 mx-auto mb-10 md:mb-20 transition-colors"></div>
 
-  <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-4 z-50 md:contents">
+  <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-4 z-[110] md:static md:block">
     <button (click)="prev()" 
-            [ngClass]="isDarkMode ? 'bg-[#191423] border-[#885ee2] text-white' : 'bg-[#f8f6ef] border-[#b5a462] text-black shadow-md'"
-            class="md:absolute md:left-4 lg:left-10 md:top-1/2 md:-translate-y-1/2 p-3 md:p-4 border rounded-full hover:bg-indigo-500 hover:text-white transition-all shadow-xl">
+            [ngClass]="isDarkMode ? 'bg-[#191423] border-[#885ee2] text-white hover:bg-[#885ee2] hover:text-black' : 'bg-[#f8f6ef] border-[#b5a462] text-black shadow-md hover:bg-[#4D462D] hover:text-white'"
+            class="md:absolute md:left-4 lg:left-10 md:top-1/2 md:-translate-y-1/2 p-3 md:p-4 border rounded-full  transition-all shadow-xl cursor-pointer relative z-[120]">
       <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
 
     <button (click)="next()" 
-            [ngClass]="isDarkMode ? 'bg-[#191423] border-[#885ee2] text-white' : 'bg-[#f8f6ef] border-[#b5a462] text-black shadow-md'"
-            class="md:absolute md:right-4 lg:right-10 md:top-1/2 md:-translate-y-1/2 border p-3 md:p-4 rounded-full hover:bg-indigo-500 hover:text-white transition-all shadow-xl">
+            [ngClass]="isDarkMode ? 'bg-[#191423] border-[#885ee2] text-white hover:bg-[#885ee2] hover:text-black' : 'bg-[#f8f6ef] border-[#b5a462] text-black shadow-md hover:bg-[#4D462D] hover:text-white'"
+            class="md:absolute md:right-4 lg:right-10 md:top-1/2 md:-translate-y-1/2 border p-3 md:p-4 rounded-full  transition-all shadow-xl cursor-pointer relative z-[120]">
       <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
   </div>
 
   <div class="relative mx-auto pt-3 overflow-visible md:overflow-hidden h-150 md:h-187.5 w-full max-w-350">
     
-    <div class="flex items-center absolute left-1/2 transition-transform duration-500 ease-in-out py-12"
+    <div class="flex items-center absolute left-1/2 transition-transform duration-500 ease-in-out py-12 pointer-events-none"
          [style.transform]="getTransform()"
          style="width: max-content;">
       
       @for(project of projects; track $index) {
         <div 
-          class="shrink-0 w-70 sm:w-[320px] md:w-87.5 rounded-xl p-4 md:p-6 transition-all duration-500 mx-2 md:mx-4 border"
-  [ngClass]="{
-              'scale-105 md:scale-110 z-20 opacity-100 shadow-2xl': $index === activeIndex,
-              'scale-90 opacity-40 grayscale blur-[1px] md:blur-[2px]': $index !== activeIndex,
-              'bg-[#191423] border-[#885ee2]': isDarkMode,
-              'bg-[#f8f6ef] border-[#b5a462]': !isDarkMode
-            }"
+          class="shrink-0 w-70 sm:w-[320px] md:w-87.5 rounded-xl p-4 md:p-6 transition-all duration-500 mx-2 md:mx-4 border pointer-events-auto"
+          [ngClass]="{
+            'scale-105 md:scale-110 z-20 opacity-100 shadow-2xl': $index === activeIndex,
+            'scale-90 opacity-40 grayscale blur-[1px] md:blur-[2px]': $index !== activeIndex,
+            'bg-[#191423] border-[#885ee2]': isDarkMode,
+            'bg-[#f8f6ef] border-[#b5a462]': !isDarkMode
+          }"
         >
           <div [ngClass]="isDarkMode ? 'bg-[#121212]' : 'bg-slate-100'"
                class="w-full h-32 sm:h-40 md:h-48 rounded-lg mb-4 md:mb-6 overflow-hidden transition-colors">
