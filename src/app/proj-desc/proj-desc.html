@@ -1,0 +1,79 @@
+<main 
+  [ngClass]="isDarkMode ? 'bg-[#191423] text-white' : 'bg-[#f8f6ef] text-slate-900'"
+  class="min-h-screen pt-32 pb-20 px-6 md:px-12 transition-colors duration-500 font-sans">
+  
+  @if (showproj) {
+    <div class="max-w-4xl mx-auto">
+      
+      <header class="mb-10 text-center md:text-left">
+        <h1 class="text-3xl md:text-5xl font-bold mb-4 tracking-tight text-center">
+          {{ showproj.name }}
+        </h1>
+        <div [ngClass]="isDarkMode ? 'border-[#885ee2]' : 'border-[#b5a462]'" 
+             class="w-100 border-t-4 mb-6 mx-auto"></div>
+      </header>
+
+      <div [ngClass]="isDarkMode ? 'bg-[#121212] border-[#885ee2]' : 'bg-slate-100 border-[#b5a462]'"
+           class="w-full rounded-2xl border-2 overflow-hidden mb-10 shadow-2xl">
+        <img [src]="showproj.imgpic" 
+             [alt]="showproj.name + ' preview'" 
+             class="w-full h-auto object-cover max-h-125">
+      </div>
+
+      <section class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+        <div class="md:col-span-2">
+          <h2 class="text-xl font-bold mb-4 uppercase tracking-widest text-[#885ee2]">Description</h2>
+          <p class="text-lg leading-relaxed opacity-90">
+            {{ showproj.desc }}
+          </p>
+        </div>
+        
+        <div>
+          <h2 class="text-xl font-bold mb-4 uppercase tracking-widest text-[#885ee2]">Tech Stack</h2>
+          <div class="flex flex-wrap gap-2">
+            <span [ngClass]="isDarkMode ? 'bg-[#2e2938] text-[#92b2e5]' : 'bg-white text-[#1e56a3] border border-slate-200'"
+                  class="font-mono px-3 py-1 rounded-md text-sm font-bold shadow-sm">
+              {{ showproj.tech }}
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-12 p-6 rounded-xl" 
+               [ngClass]="isDarkMode ? 'bg-[#121212]/50' : 'bg-white shadow-lg'">
+        <h2 class="text-2xl font-bold mb-6">Key Contributions</h2>
+        <ul class="space-y-4">
+          @for (item of showproj.contributions; track $index) {
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-check mt-1 text-[#885ee2]"></i>
+              <span class="text-lg">{{ item }}</span>
+            </li>
+          }
+        </ul>
+      </section>
+
+      <footer class="flex flex-wrap gap-4 pt-10 border-t border-slate-700/20">
+        <a [href]="showproj.repo" target="_blank" class="no-underline">
+          <button [ngClass]="isDarkMode ? 'bg-[#6f44dc] hover:bg-[#885ee2]' : 'bg-[#b5a462] hover:bg-[#4D462D]'"
+                  class="px-8 py-3 rounded-md text-white font-bold transition-all transform hover:scale-105 active:scale-95 flex items-center gap-2">
+            <i class="fa-brands fa-github"></i> View Repository
+          </button>
+        </a>
+        
+        @if (showproj.site) {
+          <a [href]="showproj.site" target="_blank" class="no-underline">
+            <button [ngClass]="isDarkMode ? 'border-[#885ee2] text-white hover:bg-[#885ee2]/10' : 'border-[#b5a462] text-black hover:bg-slate-100'"
+                    class="px-8 py-3 rounded-md border-2 font-bold transition-all transform hover:scale-105 active:scale-95 flex items-center gap-2">
+              <i class="fa-solid fa-globe"></i> Visit Website
+            </button>
+          </a>
+        }
+      </footer>
+    </div>
+  } @else {
+    <div class="h-[60vh] flex flex-col items-center justify-center">
+      <h1 class="text-4xl font-bold mb-4">Project Not Found</h1>
+      <a routerLink="/" class="text-[#885ee2] hover:underline">Return to Portfolio</a>
+    </div>
+  }
+</main>

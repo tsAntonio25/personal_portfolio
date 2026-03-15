@@ -52,8 +52,6 @@ export class Contact implements OnInit {
   }
 
   public sendEmail(e: Event) {
-    e.preventDefault();
-
     if (this.contactForm.invalid) {
       this.contactForm.markAllAsTouched(); 
       return;
@@ -63,14 +61,21 @@ export class Contact implements OnInit {
     const TEMPLATE_ID = 'template_6o4j5fi';
     const PUBLIC_KEY = 'D0HT9v3ZljMraHTJu';
 
-    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, e.target as HTMLFormElement, PUBLIC_KEY)
-      .then((result: EmailJSResponseStatus) => {
+    const templateParams = {
+      name: this.contactForm.value.name,
+      email: this.contactForm.value.email1, 
+      message: this.contactForm.value.message,
+      title: 'New Portfolio Inquiry' 
+    };
+
+    emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
+      .then((result) => {
         console.log('SUCCESS!', result.text);
         alert('Message sent successfully!');
         this.contactForm.reset(); 
       }, (error) => {
         console.log('FAILED...', error.text);
-        alert('Failed to send message. Please try again.');
+        alert('Failed to send message.');
       });
   }
 }
